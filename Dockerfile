@@ -21,6 +21,7 @@ RUN build.sh https://gitlab.freedesktop.org/xorg/lib/libxtrans.git
 
 FROM builder-01 as libX11
 COPY --from=xtrans                /tmp/libxtrans.txz   /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -30,6 +31,7 @@ RUN build.sh https://gitlab.freedesktop.org/xorg/lib/libX11.git
 FROM builder-01 as libXext
 COPY --from=xtrans                /tmp/libxtrans.txz   /tmp/
 COPY --from=libX11                /tmp/libX11.txz      /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -40,6 +42,7 @@ FROM builder-01 as libFS
 COPY --from=xtrans                /tmp/libxtrans.txz   /tmp/
 COPY --from=libX11                /tmp/libX11.txz      /tmp/
 COPY --from=libXext               /tmp/libXext.txz     /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -51,6 +54,7 @@ COPY --from=xtrans                /tmp/libxtrans.txz   /tmp/
 COPY --from=libX11                /tmp/libX11.txz      /tmp/
 COPY --from=libXext               /tmp/libXext.txz     /tmp/
 COPY --from=libFS                 /tmp/libFS.txz       /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -76,6 +80,7 @@ COPY --from=libX11                /tmp/libX11.txz      /tmp/
 COPY --from=libXext               /tmp/libXext.txz     /tmp/
 COPY --from=libFS                 /tmp/libFS.txz       /tmp/
 COPY --from=libICE                /tmp/libICE.txz      /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -89,6 +94,7 @@ COPY --from=libXext               /tmp/libXext.txz     /tmp/
 COPY --from=libFS                 /tmp/libFS.txz       /tmp/
 COPY --from=libICE                /tmp/libICE.txz      /tmp/
 COPY --from=libSM                 /tmp/libSM.txz       /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -103,6 +109,7 @@ COPY --from=libFS                 /tmp/libFS.txz         /tmp/
 COPY --from=libICE                /tmp/libICE.txz        /tmp/
 COPY --from=libSM                 /tmp/libSM.txz         /tmp/
 COPY --from=libXScrnSaver         /tmp/libXScrnSaver.txz /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -131,6 +138,7 @@ COPY --from=libICE                /tmp/libICE.txz        /tmp/
 COPY --from=libSM                 /tmp/libSM.txz         /tmp/
 COPY --from=libXScrnSaver         /tmp/libXScrnSaver.txz /tmp/
 COPY --from=libXt                 /tmp/libXt.txz         /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -147,6 +155,7 @@ COPY --from=libSM                 /tmp/libSM.txz         /tmp/
 COPY --from=libXScrnSaver         /tmp/libXScrnSaver.txz /tmp/
 COPY --from=libXt                 /tmp/libXt.txz         /tmp/
 COPY --from=libXmu                /tmp/libXmu.txz        /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -164,6 +173,7 @@ COPY --from=libXScrnSaver         /tmp/libXScrnSaver.txz /tmp/
 COPY --from=libXt                 /tmp/libXt.txz         /tmp/
 COPY --from=libXmu                /tmp/libXmu.txz        /tmp/
 COPY --from=libXpm                /tmp/libXpm.txz        /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -182,6 +192,7 @@ COPY --from=libXt                 /tmp/libXt.txz         /tmp/
 COPY --from=libXmu                /tmp/libXmu.txz        /tmp/
 COPY --from=libXpm                /tmp/libXpm.txz        /tmp/
 COPY --from=libXaw                /tmp/libXaw.txz        /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -201,6 +212,7 @@ COPY --from=libXmu                /tmp/libXmu.txz        /tmp/
 COPY --from=libXpm                /tmp/libXpm.txz        /tmp/
 COPY --from=libXaw                /tmp/libXaw.txz        /tmp/
 COPY --from=libXfixes             /tmp/libXfixes.txz     /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -221,6 +233,7 @@ COPY --from=libXpm                /tmp/libXpm.txz        /tmp/
 COPY --from=libXaw                /tmp/libXaw.txz        /tmp/
 COPY --from=libXfixes             /tmp/libXfixes.txz     /tmp/
 COPY --from=libXcomposite         /tmp/libXcomposite.txz /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -242,6 +255,7 @@ COPY --from=libXaw                /tmp/libXaw.txz        /tmp/
 COPY --from=libXfixes             /tmp/libXfixes.txz     /tmp/
 COPY --from=libXcomposite         /tmp/libXcomposite.txz /tmp/
 COPY --from=libXrender            /tmp/libXrender.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -264,6 +278,7 @@ COPY --from=libXfixes             /tmp/libXfixes.txz     /tmp/
 COPY --from=libXcomposite         /tmp/libXcomposite.txz /tmp/
 COPY --from=libXrender            /tmp/libXrender.txz    /tmp/
 COPY --from=libXcursor            /tmp/libXcursor.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -287,6 +302,7 @@ COPY --from=libXcomposite         /tmp/libXcomposite.txz /tmp/
 COPY --from=libXrender            /tmp/libXrender.txz    /tmp/
 COPY --from=libXcursor            /tmp/libXcursor.txz    /tmp/
 COPY --from=libXdamage            /tmp/libXdamage.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -311,6 +327,7 @@ COPY --from=libXrender            /tmp/libXrender.txz    /tmp/
 COPY --from=libXcursor            /tmp/libXcursor.txz    /tmp/
 COPY --from=libXdamage            /tmp/libXdamage.txz    /tmp/
 COPY --from=libfontenc            /tmp/libfontenc.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -349,6 +366,7 @@ COPY --from=libXcursor            /tmp/libXcursor.txz    /tmp/
 COPY --from=libXdamage            /tmp/libXdamage.txz    /tmp/
 COPY --from=libfontenc            /tmp/libfontenc.txz    /tmp/
 COPY --from=libXfont2             /tmp/libXfont2.txz     /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -375,6 +393,7 @@ COPY --from=libXdamage            /tmp/libXdamage.txz    /tmp/
 COPY --from=libfontenc            /tmp/libfontenc.txz    /tmp/
 COPY --from=libXfont2             /tmp/libXfont2.txz     /tmp/
 COPY --from=libXft                /tmp/libXft.txz        /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -402,6 +421,7 @@ COPY --from=libfontenc            /tmp/libfontenc.txz    /tmp/
 COPY --from=libXfont2             /tmp/libXfont2.txz     /tmp/
 COPY --from=libXft                /tmp/libXft.txz        /tmp/
 COPY --from=libXi                 /tmp/libXi.txz         /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -430,6 +450,7 @@ COPY --from=libXfont2             /tmp/libXfont2.txz     /tmp/
 COPY --from=libXft                /tmp/libXft.txz        /tmp/
 COPY --from=libXi                 /tmp/libXi.txz         /tmp/
 COPY --from=libXinerama           /tmp/libXinerama.txz   /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -459,6 +480,7 @@ COPY --from=libXft                /tmp/libXft.txz        /tmp/
 COPY --from=libXi                 /tmp/libXi.txz         /tmp/
 COPY --from=libXinerama           /tmp/libXinerama.txz   /tmp/
 COPY --from=libXrandr             /tmp/libXrandr.txz     /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -489,6 +511,7 @@ COPY --from=libXi                 /tmp/libXi.txz         /tmp/
 COPY --from=libXinerama           /tmp/libXinerama.txz   /tmp/
 COPY --from=libXrandr             /tmp/libXrandr.txz     /tmp/
 COPY --from=libXres               /tmp/libXres.txz       /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -520,6 +543,7 @@ COPY --from=libXinerama           /tmp/libXinerama.txz   /tmp/
 COPY --from=libXrandr             /tmp/libXrandr.txz     /tmp/
 COPY --from=libXres               /tmp/libXres.txz       /tmp/
 COPY --from=libXtst               /tmp/libXtst.txz       /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -552,6 +576,7 @@ COPY --from=libXrandr             /tmp/libXrandr.txz     /tmp/
 COPY --from=libXres               /tmp/libXres.txz       /tmp/
 COPY --from=libXtst               /tmp/libXtst.txz       /tmp/
 COPY --from=libXv                 /tmp/libXv.txz         /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -585,6 +610,7 @@ COPY --from=libXres               /tmp/libXres.txz       /tmp/
 COPY --from=libXtst               /tmp/libXtst.txz       /tmp/
 COPY --from=libXv                 /tmp/libXv.txz         /tmp/
 COPY --from=libXvMC               /tmp/libXvMC.txz       /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -619,6 +645,7 @@ COPY --from=libXtst               /tmp/libXtst.txz       /tmp/
 COPY --from=libXv                 /tmp/libXv.txz         /tmp/
 COPY --from=libXvMC               /tmp/libXvMC.txz       /tmp/
 COPY --from=libXxf86dga           /tmp/libXxf86dga.txz   /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -654,6 +681,7 @@ COPY --from=libXv                 /tmp/libXv.txz         /tmp/
 COPY --from=libXvMC               /tmp/libXvMC.txz       /tmp/
 COPY --from=libXxf86dga           /tmp/libXxf86dga.txz   /tmp/
 COPY --from=libXxf86vm            /tmp/libXxf86vm.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -690,6 +718,7 @@ COPY --from=libXvMC               /tmp/libXvMC.txz       /tmp/
 COPY --from=libXxf86dga           /tmp/libXxf86dga.txz   /tmp/
 COPY --from=libXxf86vm            /tmp/libXxf86vm.txz    /tmp/
 COPY --from=libdmx                /tmp/libdmx.txz        /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -727,6 +756,7 @@ COPY --from=libXxf86dga           /tmp/libXxf86dga.txz   /tmp/
 COPY --from=libXxf86vm            /tmp/libXxf86vm.txz    /tmp/
 COPY --from=libdmx                /tmp/libdmx.txz        /tmp/
 COPY --from=libpciaccess          /tmp/libpciaccess.txz  /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
@@ -765,6 +795,7 @@ COPY --from=libXxf86vm            /tmp/libXxf86vm.txz    /tmp/
 COPY --from=libdmx                /tmp/libdmx.txz        /tmp/
 COPY --from=libpciaccess          /tmp/libpciaccess.txz  /tmp/
 COPY --from=libxkbfile            /tmp/libxkbfile.txz    /tmp/
+USER root
 RUN extract.sh
 ARG LFS=/mnt/lfs
 WORKDIR $LFS/sources
