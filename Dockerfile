@@ -1,4 +1,5 @@
 FROM innovanon/xorg-base:latest as builder-01
+USER root
 COPY --from=innovanon/util-macros /tmp/util-macros.txz /tmp/
 COPY --from=innovanon/xorgproto   /tmp/xorgproto.txz   /tmp/
 COPY --from=innovanon/libxau      /tmp/libXau.txz      /tmp/
@@ -63,7 +64,7 @@ RUN sleep 31                                                                    
  && rm -rf                                                                  libICE        \
  && cd           /tmp/libICE                                                              \
  && strip.sh .                                                                            \
- && tar acf        ../libICE.txz .                                                        \
+ && tar  pacf        ../libICE.txz .                                                        \
  && cd ..                                                                                 \
  && rm -rf       /tmp/libICE
 
@@ -114,7 +115,7 @@ RUN sleep 31                                                                    
  && rm -rf                                                                  libXt             \
  && cd           /tmp/libXt                                                                   \
  && strip.sh .                                                                                \
- && tar acf        ../libXt.txz .                                                             \
+ && tar  pacf        ../libXt.txz .                                                             \
  && cd ..                                                                                     \
  && rm -rf       /tmp/libXt
 
@@ -321,7 +322,7 @@ RUN sleep 31                                                                    
  && rm -rf                                                                  libXfont2     \
  && cd           /tmp/libXfont2                                                           \
  && strip.sh .                                                                            \
- && tar acf        ../libXfont2.txz .                                                     \
+ && tar  pacf        ../libXfont2.txz .                                                     \
  && cd ..                                                                                 \
  && rm -rf       /tmp/libXfont2
 
