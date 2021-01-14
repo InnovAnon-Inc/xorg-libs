@@ -7,6 +7,7 @@ COPY --from=innovanon/libxdmcp    /tmp/libXdmcp.txz    /tmp/
 COPY --from=innovanon/xcb-proto   /tmp/xcbproto.txz    /tmp/
 COPY --from=innovanon/libxcb      /tmp/libxcb.txz      /tmp/
 COPY --from=innovanon/freetype    /tmp/freetype2.txz   /tmp/
+COPY --from=innovanon/expat       /tmp/expat.txz       /tmp/
 COPY --from=innovanon/fontconfig  /tmp/fontconfig.txz  /tmp/
 COPY ./build.sh /usr/local/bin/
 RUN command -v build.sh \
@@ -61,6 +62,7 @@ RUN sleep 31                                                                    
  && ./configure $XORG_CONFIG ICE_LIBS=-lpthread                                           \
  && make                                                                                  \
  && make DESTDIR=/tmp/libICE install                                                      \
+ && cd .. \
  && rm -rf                                                                  libICE        \
  && cd           /tmp/libICE                                                              \
  && strip.sh .                                                                            \
@@ -112,6 +114,7 @@ RUN sleep 31                                                                    
  && ./configure $XORG_CONFIG --with-appdefaultdir=$XORG_PREFIX/etc/X11/app-defaults           \
  && make                                                                                      \
  && make DESTDIR=/tmp/libXt install                                                           \
+ && cd .. \
  && rm -rf                                                                  libXt             \
  && cd           /tmp/libXt                                                                   \
  && strip.sh .                                                                                \
@@ -319,6 +322,7 @@ RUN sleep 31                                                                    
  && ./configure $XORG_CONFIG --disable-devel-docs                                         \
  && make                                                                                  \
  && make DESTDIR=/tmp/libXfont2 install                                                   \
+ && cd .. \
  && rm -rf                                                                  libXfont2     \
  && cd           /tmp/libXfont2                                                           \
  && strip.sh .                                                                            \

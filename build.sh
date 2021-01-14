@@ -3,12 +3,12 @@ set -euvxo pipefail
 (( UID ))
 (( $# >= 1 ))
 URL="$1"
-pop
+shift
 if (( ! $# )) ; then
   PKG="${URL/.git/}"
 else
   PKG="$1"
-  pop
+  shift
 fi
 (( ! $# ))
 [[ "$URL" ]]
