@@ -6,6 +6,7 @@ URL="$1"
 shift
 if (( ! $# )) ; then
   PKG="${URL/.git/}"
+  PKG="$(basename "$PKG")"
 else
   PKG="$1"
   shift
